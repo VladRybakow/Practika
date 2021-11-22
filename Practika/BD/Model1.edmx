@@ -1,0 +1,1167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Educational_practice_RybakovModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Application_code" />
+          </Key>
+          <Property Name="Application_code" Type="int" Nullable="false" />
+          <Property Name="Item_number" Type="int" />
+          <Property Name="Student_code" Type="int" />
+        </EntityType>
+        <EntityType Name="Audience">
+          <Key>
+            <PropertyRef Name="Audience_code" />
+          </Key>
+          <Property Name="Audience_code" Type="int" Nullable="false" />
+          <Property Name="School_code" Type="int" />
+        </EntityType>
+        <EntityType Name="Authorization">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="Student_code" Type="int" />
+          <Property Name="Item_number" Type="int" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Branch_code" />
+          </Key>
+          <Property Name="Branch_code" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Educational institution">
+          <Key>
+            <PropertyRef Name="School_code" />
+          </Key>
+          <Property Name="School_code" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="Group_code" />
+          </Key>
+          <Property Name="Group_code" Type="int" Nullable="false" />
+          <Property Name="Number_of_students" Type="int" />
+          <Property Name="Teacher_code" Type="int" />
+          <Property Name="Audience_code" Type="int" />
+          <Property Name="Load_code" Type="int" />
+          <Property Name="Specialty_Code" Type="int" />
+        </EntityType>
+        <EntityType Name="Load">
+          <Key>
+            <PropertyRef Name="Load_code" />
+          </Key>
+          <Property Name="Load_code" Type="int" Nullable="false" />
+          <Property Name="Item" Type="nchar" MaxLength="50" />
+          <Property Name="Number_of_hours" Type="float" />
+          <Property Name="Payment" Type="float" />
+        </EntityType>
+        <EntityType Name="Occupation type">
+          <Key>
+            <PropertyRef Name="Study_type_code" />
+          </Key>
+          <Property Name="Study_type_code" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="25" />
+          <Property Name="Load_code" Type="int" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="Student_code" />
+          </Key>
+          <Property Name="Student_code" Type="int" Nullable="false" />
+          <Property Name="Surname" Type="nchar" MaxLength="20" />
+          <Property Name="Name" Type="nchar" MaxLength="20" />
+          <Property Name="Middle_name" Type="nchar" MaxLength="20" />
+          <Property Name="Gender" Type="nchar" MaxLength="1" />
+          <Property Name="Year_of_birth" Type="date" />
+          <Property Name="Group_code" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="Schedule_code" />
+          </Key>
+          <Property Name="Schedule_code" Type="int" Nullable="false" />
+          <Property Name="Lesson_time" Type="datetime2" Precision="7" />
+          <Property Name="Audience_code" Type="int" />
+          <Property Name="Group_code" Type="int" />
+          <Property Name="Teacher_code" Type="int" />
+        </EntityType>
+        <EntityType Name="Selection committee">
+          <Key>
+            <PropertyRef Name="Item_number" />
+          </Key>
+          <Property Name="Item_number" Type="int" Nullable="false" />
+          <Property Name="Full_name" Type="nchar" MaxLength="50" />
+          <Property Name="School_code" Type="int" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="Specialty_Code" />
+          </Key>
+          <Property Name="Specialty_Code" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="25" />
+          <Property Name="Branch_code" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="Teacher_code" />
+          </Key>
+          <Property Name="Teacher_code" Type="int" Nullable="false" />
+          <Property Name="Surname" Type="nchar" MaxLength="20" />
+          <Property Name="Name" Type="nchar" MaxLength="20" />
+          <Property Name="Middle_name" Type="nchar" MaxLength="20" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Experience" Type="float" />
+        </EntityType>
+        <Association Name="FK_Application_Participant">
+          <End Role="Participant" Type="Self.Participant" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participant">
+              <PropertyRef Name="Student_code" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="Student_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Selection committee">
+          <End Role="Selection committee" Type="Self.Selection committee" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Selection committee">
+              <PropertyRef Name="Item_number" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="Item_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Audience_Educational institution">
+          <End Role="Educational institution" Type="Self.Educational institution" Multiplicity="0..1" />
+          <End Role="Audience" Type="Self.Audience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Educational institution">
+              <PropertyRef Name="School_code" />
+            </Principal>
+            <Dependent Role="Audience">
+              <PropertyRef Name="School_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorization_Participant">
+          <End Role="Participant" Type="Self.Participant" Multiplicity="0..1" />
+          <End Role="Authorization" Type="Self.Authorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participant">
+              <PropertyRef Name="Student_code" />
+            </Principal>
+            <Dependent Role="Authorization">
+              <PropertyRef Name="Student_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorization_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Authorization" Type="Self.Authorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Authorization">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorization_Selection committee">
+          <End Role="Selection committee" Type="Self.Selection committee" Multiplicity="0..1" />
+          <End Role="Authorization" Type="Self.Authorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Selection committee">
+              <PropertyRef Name="Item_number" />
+            </Principal>
+            <Dependent Role="Authorization">
+              <PropertyRef Name="Item_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Audience">
+          <End Role="Audience" Type="Self.Audience" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Audience">
+              <PropertyRef Name="Audience_code" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Audience_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Load">
+          <End Role="Load" Type="Self.Load" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Load">
+              <PropertyRef Name="Load_code" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Load_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Speciality">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="Specialty_Code" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Specialty_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Teacher_code" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Teacher_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Occupation type_Load">
+          <End Role="Load" Type="Self.Load" Multiplicity="0..1" />
+          <End Role="Occupation type" Type="Self.Occupation type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Load">
+              <PropertyRef Name="Load_code" />
+            </Principal>
+            <Dependent Role="Occupation type">
+              <PropertyRef Name="Load_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Participant_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Participant" Type="Self.Participant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Group_code" />
+            </Principal>
+            <Dependent Role="Participant">
+              <PropertyRef Name="Group_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Audience">
+          <End Role="Audience" Type="Self.Audience" Multiplicity="0..1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Audience">
+              <PropertyRef Name="Audience_code" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Audience_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Group_code" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Group_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Teacher_code" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Teacher_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Selection committee_Educational institution">
+          <End Role="Educational institution" Type="Self.Educational institution" Multiplicity="0..1" />
+          <End Role="Selection committee" Type="Self.Selection committee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Educational institution">
+              <PropertyRef Name="School_code" />
+            </Principal>
+            <Dependent Role="Selection committee">
+              <PropertyRef Name="School_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Speciality_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Branch_code" />
+            </Principal>
+            <Dependent Role="Speciality">
+              <PropertyRef Name="Branch_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище Educational_practice_RybakovModelContainer">
+          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Authorization" EntityType="Self.Authorization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Educational institution" EntityType="Self.Educational institution" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Load" EntityType="Self.Load" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Occupation type" EntityType="Self.Occupation type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participant" EntityType="Self.Participant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Selection committee" EntityType="Self.Selection committee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Application_Participant" Association="Self.FK_Application_Participant">
+            <End Role="Participant" EntitySet="Participant" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Selection committee" Association="Self.FK_Application_Selection committee">
+            <End Role="Selection committee" EntitySet="Selection committee" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Audience_Educational institution" Association="Self.FK_Audience_Educational institution">
+            <End Role="Educational institution" EntitySet="Educational institution" />
+            <End Role="Audience" EntitySet="Audience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorization_Participant" Association="Self.FK_Authorization_Participant">
+            <End Role="Participant" EntitySet="Participant" />
+            <End Role="Authorization" EntitySet="Authorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorization_Role" Association="Self.FK_Authorization_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Authorization" EntitySet="Authorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorization_Selection committee" Association="Self.FK_Authorization_Selection committee">
+            <End Role="Selection committee" EntitySet="Selection committee" />
+            <End Role="Authorization" EntitySet="Authorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Audience" Association="Self.FK_Groups_Audience">
+            <End Role="Audience" EntitySet="Audience" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Load" Association="Self.FK_Groups_Load">
+            <End Role="Load" EntitySet="Load" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Speciality" Association="Self.FK_Groups_Speciality">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Teachers" Association="Self.FK_Groups_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Occupation type_Load" Association="Self.FK_Occupation type_Load">
+            <End Role="Load" EntitySet="Load" />
+            <End Role="Occupation type" EntitySet="Occupation type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Participant_Groups" Association="Self.FK_Participant_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Participant" EntitySet="Participant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Audience" Association="Self.FK_Schedule_Audience">
+            <End Role="Audience" EntitySet="Audience" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Groups" Association="Self.FK_Schedule_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Teachers" Association="Self.FK_Schedule_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Selection committee_Educational institution" Association="Self.FK_Selection committee_Educational institution">
+            <End Role="Educational institution" EntitySet="Educational institution" />
+            <End Role="Selection committee" EntitySet="Selection committee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Speciality_Branch" Association="Self.FK_Speciality_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Speciality" EntitySet="Speciality" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Educational_practice_RybakovModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Application_code" />
+          </Key>
+          <Property Name="Application_code" Type="Int32" Nullable="false" />
+          <Property Name="Item_number" Type="Int32" />
+          <Property Name="Student_code" Type="Int32" />
+          <NavigationProperty Name="Participant" Relationship="Self.FK_Application_Participant" FromRole="Application" ToRole="Participant" />
+          <NavigationProperty Name="Selection_committee" Relationship="Self.FK_Application_Selection_committee" FromRole="Application" ToRole="Selection_committee" />
+        </EntityType>
+        <EntityType Name="Audience">
+          <Key>
+            <PropertyRef Name="Audience_code" />
+          </Key>
+          <Property Name="Audience_code" Type="Int32" Nullable="false" />
+          <Property Name="School_code" Type="Int32" />
+          <NavigationProperty Name="Educational_institution" Relationship="Self.FK_Audience_Educational_institution" FromRole="Audience" ToRole="Educational_institution" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_Audience" FromRole="Audience" ToRole="Groups" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Audience" FromRole="Audience" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Authorization">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="Student_code" Type="Int32" />
+          <Property Name="Item_number" Type="Int32" />
+          <NavigationProperty Name="Participant" Relationship="Self.FK_Authorization_Participant" FromRole="Authorization" ToRole="Participant" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Authorization_Role" FromRole="Authorization" ToRole="Role" />
+          <NavigationProperty Name="Selection_committee" Relationship="Self.FK_Authorization_Selection_committee" FromRole="Authorization" ToRole="Selection_committee" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Branch_code" />
+          </Key>
+          <Property Name="Branch_code" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Speciality" Relationship="Self.FK_Speciality_Branch" FromRole="Branch" ToRole="Speciality" />
+        </EntityType>
+        <EntityType Name="Educational_institution">
+          <Key>
+            <PropertyRef Name="School_code" />
+          </Key>
+          <Property Name="School_code" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Audience" Relationship="Self.FK_Audience_Educational_institution" FromRole="Educational_institution" ToRole="Audience" />
+          <NavigationProperty Name="Selection_committee" Relationship="Self.FK_Selection_committee_Educational_institution" FromRole="Educational_institution" ToRole="Selection_committee" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="Group_code" />
+          </Key>
+          <Property Name="Group_code" Type="Int32" Nullable="false" />
+          <Property Name="Number_of_students" Type="Int32" />
+          <Property Name="Teacher_code" Type="Int32" />
+          <Property Name="Audience_code" Type="Int32" />
+          <Property Name="Load_code" Type="Int32" />
+          <Property Name="Specialty_Code" Type="Int32" />
+          <NavigationProperty Name="Audience" Relationship="Self.FK_Groups_Audience" FromRole="Groups" ToRole="Audience" />
+          <NavigationProperty Name="Load" Relationship="Self.FK_Groups_Load" FromRole="Groups" ToRole="Load" />
+          <NavigationProperty Name="Speciality" Relationship="Self.FK_Groups_Speciality" FromRole="Groups" ToRole="Speciality" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Groups_Teachers" FromRole="Groups" ToRole="Teachers" />
+          <NavigationProperty Name="Participant" Relationship="Self.FK_Participant_Groups" FromRole="Groups" ToRole="Participant" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Groups" FromRole="Groups" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Load">
+          <Key>
+            <PropertyRef Name="Load_code" />
+          </Key>
+          <Property Name="Load_code" Type="Int32" Nullable="false" />
+          <Property Name="Item" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Number_of_hours" Type="Double" />
+          <Property Name="Payment" Type="Double" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_Load" FromRole="Load" ToRole="Groups" />
+          <NavigationProperty Name="Occupation_type" Relationship="Self.FK_Occupation_type_Load" FromRole="Load" ToRole="Occupation_type" />
+        </EntityType>
+        <EntityType Name="Occupation_type">
+          <Key>
+            <PropertyRef Name="Study_type_code" />
+          </Key>
+          <Property Name="Study_type_code" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Load_code" Type="Int32" />
+          <NavigationProperty Name="Load" Relationship="Self.FK_Occupation_type_Load" FromRole="Occupation_type" ToRole="Load" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="Student_code" />
+          </Key>
+          <Property Name="Student_code" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Middle_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Year_of_birth" Type="DateTime" Precision="0" />
+          <Property Name="Group_code" Type="Int32" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_Application_Participant" FromRole="Participant" ToRole="Application" />
+          <NavigationProperty Name="Authorization" Relationship="Self.FK_Authorization_Participant" FromRole="Participant" ToRole="Authorization" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Participant_Groups" FromRole="Participant" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Authorization" Relationship="Self.FK_Authorization_Role" FromRole="Role" ToRole="Authorization" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="Schedule_code" />
+          </Key>
+          <Property Name="Schedule_code" Type="Int32" Nullable="false" />
+          <Property Name="Lesson_time" Type="DateTime" Precision="7" />
+          <Property Name="Audience_code" Type="Int32" />
+          <Property Name="Group_code" Type="Int32" />
+          <Property Name="Teacher_code" Type="Int32" />
+          <NavigationProperty Name="Audience" Relationship="Self.FK_Schedule_Audience" FromRole="Schedule" ToRole="Audience" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Schedule_Groups" FromRole="Schedule" ToRole="Groups" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Schedule_Teachers" FromRole="Schedule" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Selection_committee">
+          <Key>
+            <PropertyRef Name="Item_number" />
+          </Key>
+          <Property Name="Item_number" Type="Int32" Nullable="false" />
+          <Property Name="Full_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="School_code" Type="Int32" />
+          <NavigationProperty Name="Application" Relationship="Self.FK_Application_Selection_committee" FromRole="Selection_committee" ToRole="Application" />
+          <NavigationProperty Name="Authorization" Relationship="Self.FK_Authorization_Selection_committee" FromRole="Selection_committee" ToRole="Authorization" />
+          <NavigationProperty Name="Educational_institution" Relationship="Self.FK_Selection_committee_Educational_institution" FromRole="Selection_committee" ToRole="Educational_institution" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="Specialty_Code" />
+          </Key>
+          <Property Name="Specialty_Code" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Branch_code" Type="Int32" />
+          <NavigationProperty Name="Branch" Relationship="Self.FK_Speciality_Branch" FromRole="Speciality" ToRole="Branch" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_Speciality" FromRole="Speciality" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="Teacher_code" />
+          </Key>
+          <Property Name="Teacher_code" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Middle_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Experience" Type="Double" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_Teachers" FromRole="Teachers" ToRole="Groups" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Teachers" FromRole="Teachers" ToRole="Schedule" />
+        </EntityType>
+        <Association Name="FK_Application_Participant">
+          <End Role="Participant" Type="Self.Participant" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participant">
+              <PropertyRef Name="Student_code" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="Student_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Selection_committee">
+          <End Role="Selection_committee" Type="Self.Selection_committee" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Selection_committee">
+              <PropertyRef Name="Item_number" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="Item_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Audience_Educational_institution">
+          <End Role="Educational_institution" Type="Self.Educational_institution" Multiplicity="0..1" />
+          <End Role="Audience" Type="Self.Audience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Educational_institution">
+              <PropertyRef Name="School_code" />
+            </Principal>
+            <Dependent Role="Audience">
+              <PropertyRef Name="School_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Audience">
+          <End Role="Audience" Type="Self.Audience" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Audience">
+              <PropertyRef Name="Audience_code" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Audience_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Audience">
+          <End Role="Audience" Type="Self.Audience" Multiplicity="0..1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Audience">
+              <PropertyRef Name="Audience_code" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Audience_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorization_Participant">
+          <End Role="Participant" Type="Self.Participant" Multiplicity="0..1" />
+          <End Role="Authorization" Type="Self.Authorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participant">
+              <PropertyRef Name="Student_code" />
+            </Principal>
+            <Dependent Role="Authorization">
+              <PropertyRef Name="Student_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorization_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Authorization" Type="Self.Authorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Authorization">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorization_Selection_committee">
+          <End Role="Selection_committee" Type="Self.Selection_committee" Multiplicity="0..1" />
+          <End Role="Authorization" Type="Self.Authorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Selection_committee">
+              <PropertyRef Name="Item_number" />
+            </Principal>
+            <Dependent Role="Authorization">
+              <PropertyRef Name="Item_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Speciality_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Branch_code" />
+            </Principal>
+            <Dependent Role="Speciality">
+              <PropertyRef Name="Branch_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Selection_committee_Educational_institution">
+          <End Role="Educational_institution" Type="Self.Educational_institution" Multiplicity="0..1" />
+          <End Role="Selection_committee" Type="Self.Selection_committee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Educational_institution">
+              <PropertyRef Name="School_code" />
+            </Principal>
+            <Dependent Role="Selection_committee">
+              <PropertyRef Name="School_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Load">
+          <End Role="Load" Type="Self.Load" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Load">
+              <PropertyRef Name="Load_code" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Load_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Speciality">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="Specialty_Code" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Specialty_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Teacher_code" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Teacher_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Participant_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Participant" Type="Self.Participant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Group_code" />
+            </Principal>
+            <Dependent Role="Participant">
+              <PropertyRef Name="Group_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Group_code" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Group_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Occupation_type_Load">
+          <End Role="Load" Type="Self.Load" Multiplicity="0..1" />
+          <End Role="Occupation_type" Type="Self.Occupation_type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Load">
+              <PropertyRef Name="Load_code" />
+            </Principal>
+            <Dependent Role="Occupation_type">
+              <PropertyRef Name="Load_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Teacher_code" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="Teacher_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Educational_practice_RybakovEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Application" EntityType="Self.Application" />
+          <EntitySet Name="Audience" EntityType="Self.Audience" />
+          <EntitySet Name="Authorization" EntityType="Self.Authorization" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" />
+          <EntitySet Name="Educational_institution" EntityType="Self.Educational_institution" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" />
+          <EntitySet Name="Load" EntityType="Self.Load" />
+          <EntitySet Name="Occupation_type" EntityType="Self.Occupation_type" />
+          <EntitySet Name="Participant" EntityType="Self.Participant" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" />
+          <EntitySet Name="Selection_committee" EntityType="Self.Selection_committee" />
+          <EntitySet Name="Speciality" EntityType="Self.Speciality" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" />
+          <AssociationSet Name="FK_Application_Participant" Association="Self.FK_Application_Participant">
+            <End Role="Participant" EntitySet="Participant" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Selection_committee" Association="Self.FK_Application_Selection_committee">
+            <End Role="Selection_committee" EntitySet="Selection_committee" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Audience_Educational_institution" Association="Self.FK_Audience_Educational_institution">
+            <End Role="Educational_institution" EntitySet="Educational_institution" />
+            <End Role="Audience" EntitySet="Audience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Audience" Association="Self.FK_Groups_Audience">
+            <End Role="Audience" EntitySet="Audience" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Audience" Association="Self.FK_Schedule_Audience">
+            <End Role="Audience" EntitySet="Audience" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorization_Participant" Association="Self.FK_Authorization_Participant">
+            <End Role="Participant" EntitySet="Participant" />
+            <End Role="Authorization" EntitySet="Authorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorization_Role" Association="Self.FK_Authorization_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Authorization" EntitySet="Authorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorization_Selection_committee" Association="Self.FK_Authorization_Selection_committee">
+            <End Role="Selection_committee" EntitySet="Selection_committee" />
+            <End Role="Authorization" EntitySet="Authorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Speciality_Branch" Association="Self.FK_Speciality_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Speciality" EntitySet="Speciality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Selection_committee_Educational_institution" Association="Self.FK_Selection_committee_Educational_institution">
+            <End Role="Educational_institution" EntitySet="Educational_institution" />
+            <End Role="Selection_committee" EntitySet="Selection_committee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Load" Association="Self.FK_Groups_Load">
+            <End Role="Load" EntitySet="Load" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Speciality" Association="Self.FK_Groups_Speciality">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Teachers" Association="Self.FK_Groups_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Participant_Groups" Association="Self.FK_Participant_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Participant" EntitySet="Participant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Groups" Association="Self.FK_Schedule_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Occupation_type_Load" Association="Self.FK_Occupation_type_Load">
+            <End Role="Load" EntitySet="Load" />
+            <End Role="Occupation_type" EntitySet="Occupation_type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Teachers" Association="Self.FK_Schedule_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Educational_practice_RybakovModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Educational_practice_RybakovModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Educational_practice_RybakovModelContainer" CdmEntityContainer="Educational_practice_RybakovEntities">
+          <EntitySetMapping Name="Application">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="Application_code" ColumnName="Application_code" />
+                <ScalarProperty Name="Item_number" ColumnName="Item_number" />
+                <ScalarProperty Name="Student_code" ColumnName="Student_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Audience">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Audience">
+              <MappingFragment StoreEntitySet="Audience">
+                <ScalarProperty Name="Audience_code" ColumnName="Audience_code" />
+                <ScalarProperty Name="School_code" ColumnName="School_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authorization">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Authorization">
+              <MappingFragment StoreEntitySet="Authorization">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Student_code" ColumnName="Student_code" />
+                <ScalarProperty Name="Item_number" ColumnName="Item_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branch">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="Branch_code" ColumnName="Branch_code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Educational_institution">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Educational_institution">
+              <MappingFragment StoreEntitySet="Educational institution">
+                <ScalarProperty Name="School_code" ColumnName="School_code" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Groups">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="Group_code" ColumnName="Group_code" />
+                <ScalarProperty Name="Number_of_students" ColumnName="Number_of_students" />
+                <ScalarProperty Name="Teacher_code" ColumnName="Teacher_code" />
+                <ScalarProperty Name="Audience_code" ColumnName="Audience_code" />
+                <ScalarProperty Name="Load_code" ColumnName="Load_code" />
+                <ScalarProperty Name="Specialty_Code" ColumnName="Specialty_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Load">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Load">
+              <MappingFragment StoreEntitySet="Load">
+                <ScalarProperty Name="Load_code" ColumnName="Load_code" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Number_of_hours" ColumnName="Number_of_hours" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Occupation_type">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Occupation_type">
+              <MappingFragment StoreEntitySet="Occupation type">
+                <ScalarProperty Name="Study_type_code" ColumnName="Study_type_code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Load_code" ColumnName="Load_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Participant">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Participant">
+              <MappingFragment StoreEntitySet="Participant">
+                <ScalarProperty Name="Student_code" ColumnName="Student_code" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Year_of_birth" ColumnName="Year_of_birth" />
+                <ScalarProperty Name="Group_code" ColumnName="Group_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedule">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="Schedule_code" ColumnName="Schedule_code" />
+                <ScalarProperty Name="Lesson_time" ColumnName="Lesson_time" />
+                <ScalarProperty Name="Audience_code" ColumnName="Audience_code" />
+                <ScalarProperty Name="Group_code" ColumnName="Group_code" />
+                <ScalarProperty Name="Teacher_code" ColumnName="Teacher_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Selection_committee">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Selection_committee">
+              <MappingFragment StoreEntitySet="Selection committee">
+                <ScalarProperty Name="Item_number" ColumnName="Item_number" />
+                <ScalarProperty Name="Full_name" ColumnName="Full_name" />
+                <ScalarProperty Name="School_code" ColumnName="School_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Speciality">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Speciality">
+              <MappingFragment StoreEntitySet="Speciality">
+                <ScalarProperty Name="Specialty_Code" ColumnName="Specialty_Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Branch_code" ColumnName="Branch_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Teachers">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="Teacher_code" ColumnName="Teacher_code" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище Educational_practice_RybakovModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище Educational_practice_RybakovModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище Educational_practice_RybakovModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище Educational_practice_RybakovModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Educational_practice_RybakovModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище Educational_practice_RybakovModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Educational_practice_RybakovModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище Educational_practice_RybakovModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище Educational_practice_RybakovModel.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
