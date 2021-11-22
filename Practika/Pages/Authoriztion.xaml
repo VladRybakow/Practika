@@ -110,6 +110,7 @@
         <Image Source="Logo.png" 
                Grid.Column="2" Grid.Row="0"/>
 
+        
         <Rectangle
             Fill="#85DECA"
             Grid.Column="3" Grid.Row="2" Grid.RowSpan="4" 
