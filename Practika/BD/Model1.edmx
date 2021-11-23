@@ -15,7 +15,7 @@
           <Property Name="Speciality" Type="nvarchar" MaxLength="50" />
           <Property Name="Group_code" Type="int" />
           <Property Name="Student_code" Type="int" />
-          <Property Name="Enrolled" Type="bit" />
+          <Property Name="Enrolled" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Audience">
           <Key>
@@ -449,7 +449,7 @@
           <NavigationProperty Name="Participant" Relationship="Self.FK_Application_Participant" FromRole="Applicationsss" ToRole="Participant" />
           <Property Name="Group_code" Type="Int32" />
           <NavigationProperty Name="Groups" Relationship="Educational_practice_RybakovModel.FK_Applicationsss_Groups" FromRole="Applicationsss" ToRole="Groups" />
-          <Property Name="Enrolled" Type="Boolean" />
+          <Property Name="Enrolled" Type="String" />
         </EntityType>
         <EntityType Name="Audience">
           <Key>

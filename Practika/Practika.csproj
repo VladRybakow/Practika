@@ -140,6 +140,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Examination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Invitation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +156,9 @@
   <ItemGroup>
     <Compile Include="Pages\Authoriztion.xaml.cs">
       <DependentUpon>Authoriztion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Examination.xaml.cs">
+      <DependentUpon>Examination.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Invitation.xaml.cs">
       <DependentUpon>Invitation.xaml</DependentUpon>

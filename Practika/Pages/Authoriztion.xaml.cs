@@ -80,5 +80,10 @@ namespace Practika.Pages
                 }
             }
         }
+
+        private void SignIn_Click1(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Examination());
+        }
     }
 }
