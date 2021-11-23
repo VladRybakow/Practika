@@ -14,6 +14,7 @@ namespace Practika.BD
     
     public partial class Authorization
     {
+        public int IdAuth { get; set; }
         public string Login { get; set; }
         public string Pass { get; set; }
         public Nullable<int> RoleID { get; set; }

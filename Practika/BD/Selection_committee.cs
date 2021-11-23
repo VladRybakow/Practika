@@ -17,7 +17,6 @@ namespace Practika.BD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Selection_committee()
         {
-            this.Application = new HashSet<Application>();
             this.Authorization = new HashSet<Authorization>();
         }
     
@@ -25,8 +24,6 @@ namespace Practika.BD
         public string Full_name { get; set; }
         public Nullable<int> School_code { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Application> Application { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Authorization> Authorization { get; set; }
         public virtual Educational_institution Educational_institution { get; set; }

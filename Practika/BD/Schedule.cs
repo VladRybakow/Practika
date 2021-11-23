@@ -15,7 +15,7 @@ namespace Practika.BD
     public partial class Schedule
     {
         public int Schedule_code { get; set; }
-        public Nullable<System.DateTime> Lesson_time { get; set; }
+        public Nullable<double> Lesson_time { get; set; }
         public Nullable<int> Audience_code { get; set; }
         public Nullable<int> Group_code { get; set; }
         public Nullable<int> Teacher_code { get; set; }

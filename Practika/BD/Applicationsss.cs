@@ -10,10 +10,18 @@
 namespace Practika.BD
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class Applicationsss
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int Application_code { get; set; }
+        public string Description { get; set; }
+        public string Teacher_FullName { get; set; }
+        public string Speciality { get; set; }
+        public Nullable<int> Student_code { get; set; }
+        public Nullable<int> Group_code { get; set; }
+    
+        public virtual Participant Participant { get; set; }
+        public virtual Groups Groups { get; set; }
     }
 }

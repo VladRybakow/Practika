@@ -17,12 +17,9 @@ using Practika.BD;
 
 namespace Practika.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Authoriztion.xaml
-    /// </summary>
     public partial class Authoriztion : Page
     {
-        public static Educational_practice_RybakovEntities dbPractik = new Educational_practice_RybakovEntities();
+        public static Educational_practice_RybakovEntities3 dbPractik = new Educational_practice_RybakovEntities3();
         public static Authorization authUser;
 
         public Authoriztion()
@@ -32,45 +29,54 @@ namespace Practika.Pages
 
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
-            if (Login.Text == "" || Password.Text == "")
+            Authorization user = new Authorization();
+
+            if ((Login.Text == "" || Password.Text == "") && (user.Login != Login.Text || user.Pass != Password.Text))
             {
-                MessageBox.Show("Введите ваши данные");
+                MessageBox.Show("Ошибка с вводом данных");
             }
             else
             {
-                Authorization user = new Authorization
-                {
-                    Login = Login.Text,
-                    Pass = Password.Text
-                };
-                MainWindow.db.Authorization.Add(user);
-                MainWindow.db.SaveChanges();
-                MessageBox.Show("Успешно!");
+                user.Login = Login.Text;
+                user.Pass = Password.Text;
+                user.IdAuth = 2;
+                MainWindow.dbPractik.Authorization.Add(user);
 
+                try
+                {
+                    MainWindow.dbPractik.SaveChanges();
+                }
+                catch
+                {
+                    MessageBox.Show("Такой логин уже существует");
+                }
+                finally
+                {
+                    MessageBox.Show("Успешно!");
+                }
             }
         }
 
-        //private void SignIn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    foreach (var user in Authoriztion.dbPractik.Authorization)
-        //    {
-        //        if (user.Login == Login.Text.Trim())
-        //        {
-        //            if (user.Pass == Password.Text.Trim() && user.Id_Role == 2)
-        //            {
-        //                MessageBox.Show($"Привет, Пользователь: {user.Login}");
-        //                MainWindow.authUser = user;
-        //            }
-        //            if (user.Pass == Password.Text.Trim() && user.Id_Role == 1)
-        //            {
-        //                MessageBox.Show($"Привет, админ: {user.Login}");
-        //                MainWindow.authUser = user;
-        //            }
-        //            //IstanbulDB istanbulDB = new IstanbulDB();
-        //            //this.Close();
-        //            //istanbulDB.Show();
-        //        }
-        //    }
-        //}
+        private void SignIn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var user in Authoriztion.dbPractik.Authorization)
+            {
+                if (user.Login == Login.Text.Trim())
+                {
+                    if (user.Pass == Password.Text.Trim() && user.IdAuth != 1)
+                    {
+                        MessageBox.Show($"Здравствуйте, пользователь: {user.Login}");
+                        Authoriztion.authUser = user;
+                        NavigationService.Navigate(new Invitation());
+                    }
+                    if (user.Pass == Password.Text.Trim() && user.IdAuth == 1)
+                    {
+                        MessageBox.Show($"Вход с правами администратора: {user.Login}");
+                        Authoriztion.authUser = user;
+                        NavigationService.Navigate(new Selection_committee());
+                    }
+                }
+            }
+        }
     }
 }

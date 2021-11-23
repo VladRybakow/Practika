@@ -9,8 +9,7 @@
         Height="1024" 
         Width="1440"
         MinHeight="994"
-        MinWidth="1340"
->
+        MinWidth="1340">
     <Grid>
         <Frame x:Name="MenuFrame" NavigationUIVisibility="Hidden" />
     </Grid>

@@ -17,7 +17,7 @@ namespace Practika.BD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Participant()
         {
-            this.Application = new HashSet<Application>();
+            this.Applicationsss = new HashSet<Applicationsss>();
             this.Authorization = new HashSet<Authorization>();
         }
     
@@ -26,11 +26,12 @@ namespace Practika.BD
         public string Name { get; set; }
         public string Middle_name { get; set; }
         public string Gender { get; set; }
+        public Nullable<bool> Enrolled { get; set; }
         public Nullable<System.DateTime> Year_of_birth { get; set; }
         public Nullable<int> Group_code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Application> Application { get; set; }
+        public virtual ICollection<Applicationsss> Applicationsss { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Authorization> Authorization { get; set; }
         public virtual Groups Groups { get; set; }

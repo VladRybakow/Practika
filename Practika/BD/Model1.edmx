@@ -4,13 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Educational_practice_RybakovModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Application">
+    <Schema Namespace="Хранилище Educational_practice_RybakovModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Applicationsss">
           <Key>
             <PropertyRef Name="Application_code" />
           </Key>
-          <Property Name="Application_code" Type="int" Nullable="false" />
-          <Property Name="Item_number" Type="int" />
+          <Property Name="Application_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+          <Property Name="Teacher_FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Speciality" Type="nvarchar" MaxLength="50" />
+          <Property Name="Group_code" Type="int" />
           <Property Name="Student_code" Type="int" />
         </EntityType>
         <EntityType Name="Audience">
@@ -22,9 +25,10 @@
         </EntityType>
         <EntityType Name="Authorization">
           <Key>
-            <PropertyRef Name="Login" />
+            <PropertyRef Name="IdAuth" />
           </Key>
-          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdAuth" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
           <Property Name="Pass" Type="nvarchar" MaxLength="50" />
           <Property Name="RoleID" Type="int" />
           <Property Name="Student_code" Type="int" />
@@ -82,6 +86,7 @@
           <Property Name="Name" Type="nchar" MaxLength="20" />
           <Property Name="Middle_name" Type="nchar" MaxLength="20" />
           <Property Name="Gender" Type="nchar" MaxLength="1" />
+          <Property Name="Enrolled" Type="bit" />
           <Property Name="Year_of_birth" Type="date" />
           <Property Name="Group_code" Type="int" />
         </EntityType>
@@ -97,7 +102,7 @@
             <PropertyRef Name="Schedule_code" />
           </Key>
           <Property Name="Schedule_code" Type="int" Nullable="false" />
-          <Property Name="Lesson_time" Type="datetime2" Precision="7" />
+          <Property Name="Lesson_time" Type="float" />
           <Property Name="Audience_code" Type="int" />
           <Property Name="Group_code" Type="int" />
           <Property Name="Teacher_code" Type="int" />
@@ -141,25 +146,25 @@
         </EntityType>
         <Association Name="FK_Application_Participant">
           <End Role="Participant" Type="Self.Participant" Multiplicity="0..1" />
-          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <End Role="Applicationsss" Type="Self.Applicationsss" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Participant">
               <PropertyRef Name="Student_code" />
             </Principal>
-            <Dependent Role="Application">
+            <Dependent Role="Applicationsss">
               <PropertyRef Name="Student_code" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Application_Selection committee">
-          <End Role="Selection committee" Type="Self.Selection committee" Multiplicity="0..1" />
-          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+        <Association Name="FK_Applicationsss_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Applicationsss" Type="Self.Applicationsss" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Selection committee">
-              <PropertyRef Name="Item_number" />
+            <Principal Role="Groups">
+              <PropertyRef Name="Group_code" />
             </Principal>
-            <Dependent Role="Application">
-              <PropertyRef Name="Item_number" />
+            <Dependent Role="Applicationsss">
+              <PropertyRef Name="Group_code" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -343,39 +348,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище Educational_practice_RybakovModelContainer">
-          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Applicationsss" EntityType="Self.Applicationsss" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Authorization" EntityType="Self.Authorization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
@@ -392,11 +366,11 @@
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Application_Participant" Association="Self.FK_Application_Participant">
             <End Role="Participant" EntitySet="Participant" />
-            <End Role="Application" EntitySet="Application" />
+            <End Role="Applicationsss" EntitySet="Applicationsss" />
           </AssociationSet>
-          <AssociationSet Name="FK_Application_Selection committee" Association="Self.FK_Application_Selection committee">
-            <End Role="Selection committee" EntitySet="Selection committee" />
-            <End Role="Application" EntitySet="Application" />
+          <AssociationSet Name="FK_Applicationsss_Groups" Association="Self.FK_Applicationsss_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Applicationsss" EntitySet="Applicationsss" />
           </AssociationSet>
           <AssociationSet Name="FK_Audience_Educational institution" Association="Self.FK_Audience_Educational institution">
             <End Role="Educational institution" EntitySet="Educational institution" />
@@ -459,20 +433,22 @@
             <End Role="Speciality" EntitySet="Speciality" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Educational_practice_RybakovModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Application">
+        <EntityType Name="Applicationsss">
           <Key>
             <PropertyRef Name="Application_code" />
           </Key>
-          <Property Name="Application_code" Type="Int32" Nullable="false" />
-          <Property Name="Item_number" Type="Int32" />
+          <Property Name="Application_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Teacher_FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Speciality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Student_code" Type="Int32" />
-          <NavigationProperty Name="Participant" Relationship="Self.FK_Application_Participant" FromRole="Application" ToRole="Participant" />
-          <NavigationProperty Name="Selection_committee" Relationship="Self.FK_Application_Selection_committee" FromRole="Application" ToRole="Selection_committee" />
+          <NavigationProperty Name="Participant" Relationship="Self.FK_Application_Participant" FromRole="Applicationsss" ToRole="Participant" />
+          <Property Name="Group_code" Type="Int32" />
+          <NavigationProperty Name="Groups" Relationship="Educational_practice_RybakovModel.FK_Applicationsss_Groups" FromRole="Applicationsss" ToRole="Groups" />
         </EntityType>
         <EntityType Name="Audience">
           <Key>
@@ -486,9 +462,10 @@
         </EntityType>
         <EntityType Name="Authorization">
           <Key>
-            <PropertyRef Name="Login" />
+            <PropertyRef Name="IdAuth" />
           </Key>
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdAuth" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RoleID" Type="Int32" />
           <Property Name="Student_code" Type="Int32" />
@@ -531,6 +508,7 @@
           <NavigationProperty Name="Teachers" Relationship="Self.FK_Groups_Teachers" FromRole="Groups" ToRole="Teachers" />
           <NavigationProperty Name="Participant" Relationship="Self.FK_Participant_Groups" FromRole="Groups" ToRole="Participant" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Groups" FromRole="Groups" ToRole="Schedule" />
+          <NavigationProperty Name="Applicationsss" Relationship="Educational_practice_RybakovModel.FK_Applicationsss_Groups" FromRole="Groups" ToRole="Applicationsss" />
         </EntityType>
         <EntityType Name="Load">
           <Key>
@@ -561,9 +539,10 @@
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Middle_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Enrolled" Type="Boolean" />
           <Property Name="Year_of_birth" Type="DateTime" Precision="0" />
           <Property Name="Group_code" Type="Int32" />
-          <NavigationProperty Name="Application" Relationship="Self.FK_Application_Participant" FromRole="Participant" ToRole="Application" />
+          <NavigationProperty Name="Applicationsss" Relationship="Self.FK_Application_Participant" FromRole="Participant" ToRole="Applicationsss" />
           <NavigationProperty Name="Authorization" Relationship="Self.FK_Authorization_Participant" FromRole="Participant" ToRole="Authorization" />
           <NavigationProperty Name="Groups" Relationship="Self.FK_Participant_Groups" FromRole="Participant" ToRole="Groups" />
         </EntityType>
@@ -580,7 +559,7 @@
             <PropertyRef Name="Schedule_code" />
           </Key>
           <Property Name="Schedule_code" Type="Int32" Nullable="false" />
-          <Property Name="Lesson_time" Type="DateTime" Precision="7" />
+          <Property Name="Lesson_time" Type="Double" />
           <Property Name="Audience_code" Type="Int32" />
           <Property Name="Group_code" Type="Int32" />
           <Property Name="Teacher_code" Type="Int32" />
@@ -595,7 +574,6 @@
           <Property Name="Item_number" Type="Int32" Nullable="false" />
           <Property Name="Full_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="School_code" Type="Int32" />
-          <NavigationProperty Name="Application" Relationship="Self.FK_Application_Selection_committee" FromRole="Selection_committee" ToRole="Application" />
           <NavigationProperty Name="Authorization" Relationship="Self.FK_Authorization_Selection_committee" FromRole="Selection_committee" ToRole="Authorization" />
           <NavigationProperty Name="Educational_institution" Relationship="Self.FK_Selection_committee_Educational_institution" FromRole="Selection_committee" ToRole="Educational_institution" />
         </EntityType>
@@ -634,25 +612,13 @@
         </EntityType>
         <Association Name="FK_Application_Participant">
           <End Role="Participant" Type="Self.Participant" Multiplicity="0..1" />
-          <End Role="Application" Type="Self.Application" Multiplicity="*" />
+          <End Role="Applicationsss" Type="Self.Applicationsss" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Participant">
               <PropertyRef Name="Student_code" />
             </Principal>
-            <Dependent Role="Application">
+            <Dependent Role="Applicationsss">
               <PropertyRef Name="Student_code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Application_Selection_committee">
-          <End Role="Selection_committee" Type="Self.Selection_committee" Multiplicity="0..1" />
-          <End Role="Application" Type="Self.Application" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Selection_committee">
-              <PropertyRef Name="Item_number" />
-            </Principal>
-            <Dependent Role="Application">
-              <PropertyRef Name="Item_number" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -836,8 +802,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Educational_practice_RybakovEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Application" EntityType="Self.Application" />
+        <EntityContainer Name="Educational_practice_RybakovEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applicationsss" EntityType="Self.Applicationsss" />
           <EntitySet Name="Audience" EntityType="Self.Audience" />
           <EntitySet Name="Authorization" EntityType="Self.Authorization" />
           <EntitySet Name="Branch" EntityType="Self.Branch" />
@@ -854,11 +820,7 @@
           <EntitySet Name="Teachers" EntityType="Self.Teachers" />
           <AssociationSet Name="FK_Application_Participant" Association="Self.FK_Application_Participant">
             <End Role="Participant" EntitySet="Participant" />
-            <End Role="Application" EntitySet="Application" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Application_Selection_committee" Association="Self.FK_Application_Selection_committee">
-            <End Role="Selection_committee" EntitySet="Selection_committee" />
-            <End Role="Application" EntitySet="Application" />
+            <End Role="Applicationsss" EntitySet="Applicationsss" />
           </AssociationSet>
           <AssociationSet Name="FK_Audience_Educational_institution" Association="Self.FK_Audience_Educational_institution">
             <End Role="Educational_institution" EntitySet="Educational_institution" />
@@ -920,59 +882,37 @@
             <End Role="Teachers" EntitySet="Teachers" />
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Educational_practice_RybakovModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Educational_practice_RybakovModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK_Applicationsss_Groups" Association="Educational_practice_RybakovModel.FK_Applicationsss_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Applicationsss" EntitySet="Applicationsss" />
+          </AssociationSet>
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
+        <Association Name="FK_Applicationsss_Groups">
+          <End Type="Educational_practice_RybakovModel.Groups" Role="Groups" Multiplicity="0..1" />
+          <End Type="Educational_practice_RybakovModel.Applicationsss" Role="Applicationsss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Group_code" />
+            </Principal>
+            <Dependent Role="Applicationsss">
+              <PropertyRef Name="Group_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище Educational_practice_RybakovModelContainer" CdmEntityContainer="Educational_practice_RybakovEntities">
-          <EntitySetMapping Name="Application">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Application">
-              <MappingFragment StoreEntitySet="Application">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Educational_practice_RybakovModelContainer" CdmEntityContainer="Educational_practice_RybakovEntities3">
+          <EntitySetMapping Name="Applicationsss">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Applicationsss">
+              <MappingFragment StoreEntitySet="Applicationsss">
+                <ScalarProperty Name="Group_code" ColumnName="Group_code" />
                 <ScalarProperty Name="Application_code" ColumnName="Application_code" />
-                <ScalarProperty Name="Item_number" ColumnName="Item_number" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Teacher_FullName" ColumnName="Teacher_FullName" />
+                <ScalarProperty Name="Speciality" ColumnName="Speciality" />
                 <ScalarProperty Name="Student_code" ColumnName="Student_code" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -988,6 +928,7 @@
           <EntitySetMapping Name="Authorization">
             <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Authorization">
               <MappingFragment StoreEntitySet="Authorization">
+                <ScalarProperty Name="IdAuth" ColumnName="IdAuth" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Pass" ColumnName="Pass" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
@@ -1052,6 +993,7 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Enrolled" ColumnName="Enrolled" />
                 <ScalarProperty Name="Year_of_birth" ColumnName="Year_of_birth" />
                 <ScalarProperty Name="Group_code" ColumnName="Group_code" />
               </MappingFragment>
@@ -1117,30 +1059,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище Educational_practice_RybakovModel.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище Educational_practice_RybakovModel.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище Educational_practice_RybakovModel.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище Educational_practice_RybakovModel.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Educational_practice_RybakovModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище Educational_practice_RybakovModel.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Educational_practice_RybakovModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище Educational_practice_RybakovModel.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище Educational_practice_RybakovModel.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

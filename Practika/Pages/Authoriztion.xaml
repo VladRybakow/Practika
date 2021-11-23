@@ -123,8 +123,8 @@
             Margin="61,63,0,0" VerticalAlignment="Top" 
             Height="70" Width="265" 
             Padding="1" FontFamily="Segoe Script" FontSize="22" 
-            BorderBrush="Black" Background="White">
-            <!--Click="SignIp_Click"-->
+            BorderBrush="Black" Background="White"
+            Click="SignIn_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="25" />
