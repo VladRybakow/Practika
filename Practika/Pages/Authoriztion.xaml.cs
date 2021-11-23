@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Practika.Pages;
 using Practika.BD;
 
+//Вход с учетки админа логин и пароль 123, пользователи все остальные.
+
 namespace Practika.Pages
 {
     public partial class Authoriztion : Page

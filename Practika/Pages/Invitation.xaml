@@ -106,21 +106,71 @@
             />
 
         <ComboBox x:Name="Spec" 
-            Grid.Column="2" Grid.Row="4" Margin="95,122,225,0" 
-            VerticalAlignment="Top" Height="24" Grid.ColumnSpan="2">
-            <TextBlock Text="Выш мат" />
-            <TextBlock Text="Спец по C#"/>
-            <TextBlock Text="Спец по Java"/>
-            <TextBlock Text="Кадровый Менеджер"/>
-            <TextBlock Text="Операционное управление"/>
-            <TextBlock Text="Управление проектами"/>
+            Grid.Column="2" Grid.Row="4" Margin="100,129,215,0" 
+            VerticalAlignment="Top" Height="24"
+            Grid.ColumnSpan="2" Width="225" Grid.RowSpan="2">
+            <TextBlock Text="Выш мат">
+                <TextBlock.ToolTip>
+                    <ToolTip>
+                        "Современные методики и особенности преподавания
+                        предмета "Математика" в соответствии с требованиями 
+                        федерального государственного образовательного стандарта"
+                    </ToolTip>
+                </TextBlock.ToolTip>
+            </TextBlock>
+            <TextBlock Text="Спец по C#">
+                <TextBlock.ToolTip>
+                    <ToolTip>
+                        "Хотите создать сайт или игру? Или написать мобильное
+                        приложение? А может, вы мечтаете программировать многопоточные
+                        сервисы? Тогда вам точно стоит освоить C#."
+                    </ToolTip>
+                </TextBlock.ToolTip>
+            </TextBlock>
+            <TextBlock Text="Спец по Java">
+                <TextBlock.ToolTip>
+                    <ToolTip>
+                        "Освойте популярный язык программирования Java 
+                        с нуля. Станьте востребованным специалистом за 9 
+                        месяцев, даже если вы раньше никогда не программировали."
+                    </ToolTip>
+                </TextBlock.ToolTip>
+            </TextBlock>
+            <TextBlock Text="Кадровый Менеджер">
+                <TextBlock.ToolTip>
+                    <ToolTip>
+                        "Вы научитесь решать задачи стратегического уровня, 
+                        ставить правильные цели и KPI, овладеете навыками поиска, адаптации, 
+                        развития, оптимизации и удержания ключевых сотрудников, а также сможете 
+                        создать комфортный климат в команде."
+                    </ToolTip>
+                </TextBlock.ToolTip>
+                </TextBlock>
+            <TextBlock Text="Операционное управление">
+                <TextBlock.ToolTip>
+                    <ToolTip>
+                        "Вы научитесь создавать систему управления, которая будет 
+                        работать как часы.Вы узнаете, как объединять команду вокруг цели
+                        и правильно делегировать задачи, чтобы разгрузить себя и заняться стратегическими вопросами."
+                    </ToolTip>
+                </TextBlock.ToolTip>
+                </TextBlock>
+            <TextBlock Text="Управление проектами">
+                <TextBlock.ToolTip>
+                    <ToolTip>
+                        "Вы сможете выстроить эффективную систему управления
+                        компанией и системно подходить к решению управленческих
+                        задач в сфере управления финансами, людьми и процессами"
+                    </ToolTip>
+                </TextBlock.ToolTip>
+            </TextBlock>
         </ComboBox>
 
         <ComboBox x:Name="Prep" 
             Grid.Column="3" Grid.Row="4"
-            HorizontalAlignment="Left" Margin="235,122,0,0" 
+            HorizontalAlignment="Left" Margin="230,129,0,0" 
             VerticalAlignment="Top" 
-            Width="215" Height="24" Grid.ColumnSpan="2">
+            Height="24" Grid.ColumnSpan="2" Width="225" Grid.RowSpan="2">
             <TextBlock Text="Агзамова Гульназ Дамировна" />
             <TextBlock Text="Аркадьева Оксана Николаевна"/>
             <TextBlock Text="Багаутдинова Эльвира Зуфаровна"/>
@@ -133,13 +183,13 @@
         <Label Grid.Column="3" Grid.Row="4"
             Content="Выбор преподавателя" 
             HorizontalAlignment="Left" VerticalAlignment="Top"
-            Margin="240,84,0,0" Width="205"
+            Margin="235,89,0,0" Width="205"
             FontFamily="Segoe Script" FontSize="16" RenderTransformOrigin="2.64,0.444" Grid.ColumnSpan="2"/>
 
         <Label Grid.Column="2" Grid.Row="4"
             Content="Выбор специальности" 
             HorizontalAlignment="Left" VerticalAlignment="Top"
-            Margin="105,84,0,0" Width="210"
+            Margin="105,89,0,0" Width="210"
             FontFamily="Segoe Script" FontSize="16" RenderTransformOrigin="2.64,0.444" Grid.ColumnSpan="2"/>
 
         <Label Grid.Column="3" Grid.Row="2"
