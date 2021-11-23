@@ -15,6 +15,7 @@
           <Property Name="Speciality" Type="nvarchar" MaxLength="50" />
           <Property Name="Group_code" Type="int" />
           <Property Name="Student_code" Type="int" />
+          <Property Name="Enrolled" Type="bit" />
         </EntityType>
         <EntityType Name="Audience">
           <Key>
@@ -86,7 +87,6 @@
           <Property Name="Name" Type="nchar" MaxLength="20" />
           <Property Name="Middle_name" Type="nchar" MaxLength="20" />
           <Property Name="Gender" Type="nchar" MaxLength="1" />
-          <Property Name="Enrolled" Type="bit" />
           <Property Name="Year_of_birth" Type="date" />
           <Property Name="Group_code" Type="int" />
         </EntityType>
@@ -449,6 +449,7 @@
           <NavigationProperty Name="Participant" Relationship="Self.FK_Application_Participant" FromRole="Applicationsss" ToRole="Participant" />
           <Property Name="Group_code" Type="Int32" />
           <NavigationProperty Name="Groups" Relationship="Educational_practice_RybakovModel.FK_Applicationsss_Groups" FromRole="Applicationsss" ToRole="Groups" />
+          <Property Name="Enrolled" Type="Boolean" />
         </EntityType>
         <EntityType Name="Audience">
           <Key>
@@ -539,7 +540,6 @@
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Middle_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
-          <Property Name="Enrolled" Type="Boolean" />
           <Property Name="Year_of_birth" Type="DateTime" Precision="0" />
           <Property Name="Group_code" Type="Int32" />
           <NavigationProperty Name="Applicationsss" Relationship="Self.FK_Application_Participant" FromRole="Participant" ToRole="Applicationsss" />
@@ -908,6 +908,7 @@
           <EntitySetMapping Name="Applicationsss">
             <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Applicationsss">
               <MappingFragment StoreEntitySet="Applicationsss">
+                <ScalarProperty Name="Enrolled" ColumnName="Enrolled" />
                 <ScalarProperty Name="Group_code" ColumnName="Group_code" />
                 <ScalarProperty Name="Application_code" ColumnName="Application_code" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -993,7 +994,6 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Enrolled" ColumnName="Enrolled" />
                 <ScalarProperty Name="Year_of_birth" ColumnName="Year_of_birth" />
                 <ScalarProperty Name="Group_code" ColumnName="Group_code" />
               </MappingFragment>

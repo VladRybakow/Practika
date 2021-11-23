@@ -106,23 +106,28 @@
             />
 
         <ComboBox x:Name="Spec" 
-            Grid.Column="2" Grid.Row="4" Margin="130,122,265,0" 
+            Grid.Column="2" Grid.Row="4" Margin="95,122,225,0" 
             VerticalAlignment="Top" Height="24" Grid.ColumnSpan="2">
             <TextBlock Text="Выш мат" />
             <TextBlock Text="Спец по C#"/>
             <TextBlock Text="Спец по Java"/>
-            <TextBlock Text="Менеджер"/>
+            <TextBlock Text="Кадровый Менеджер"/>
+            <TextBlock Text="Операционное управление"/>
+            <TextBlock Text="Управление проектами"/>
         </ComboBox>
 
         <ComboBox x:Name="Prep" 
             Grid.Column="3" Grid.Row="4"
-            HorizontalAlignment="Left" Margin="267,122,0,0" 
+            HorizontalAlignment="Left" Margin="235,122,0,0" 
             VerticalAlignment="Top" 
-            Width="145" Height="24" Grid.ColumnSpan="2">
-            <TextBlock Text="В.В.В." />
-            <TextBlock Text="К.К.К."/>
-            <TextBlock Text="Е.Е.Е."/>
-            <TextBlock Text="У.У.У."/>
+            Width="215" Height="24" Grid.ColumnSpan="2">
+            <TextBlock Text="Агзамова Гульназ Дамировна" />
+            <TextBlock Text="Аркадьева Оксана Николаевна"/>
+            <TextBlock Text="Багаутдинова Эльвира Зуфаровна"/>
+            <TextBlock Text="Бурдин Сергей Алексеевич"/>
+            <TextBlock Text="Валиев Рафил Рафисович"/>
+            <TextBlock Text="Валиуллина Альмира Рафхатовна"/>
+            <TextBlock Text="Валиуллов Булат Ильдусович"/>
         </ComboBox>
 
         <Label Grid.Column="3" Grid.Row="4"

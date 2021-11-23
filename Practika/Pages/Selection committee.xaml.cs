@@ -30,7 +30,7 @@ namespace Practika.Pages
 
             qwe = new Educational_practice_RybakovEntities3();
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Appli.ItemsSource);
+            Appli.ItemsSource = qwe.Applicationsss.ToList();
         }
 
         private void ButtonAdd(object sender, RoutedEventArgs e)

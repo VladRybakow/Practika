@@ -26,7 +26,6 @@ namespace Practika.BD
         public string Name { get; set; }
         public string Middle_name { get; set; }
         public string Gender { get; set; }
-        public Nullable<bool> Enrolled { get; set; }
         public Nullable<System.DateTime> Year_of_birth { get; set; }
         public Nullable<int> Group_code { get; set; }
     

@@ -20,6 +20,7 @@ namespace Practika.BD
         public string Speciality { get; set; }
         public Nullable<int> Student_code { get; set; }
         public Nullable<int> Group_code { get; set; }
+        public Nullable<bool> Enrolled { get; set; }
     
         public virtual Participant Participant { get; set; }
         public virtual Groups Groups { get; set; }

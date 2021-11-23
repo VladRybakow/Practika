@@ -36,7 +36,8 @@
                     <DataGridTextColumn Binding="{Binding Description}"  Width="300" Header="Текст"/>
                     <DataGridTextColumn Binding="{Binding Speciality}"  Width="200" Header="Выбранная специальность"/>
                     <DataGridTextColumn Binding="{Binding Teacher_FullName}"  Width="200" Header="Выбранный преподаватель"/>
-                    <DataGridTextColumn Binding="{Binding Teacher_FullName}"  Width="200" Header="Группа"/>
+                    <DataGridTextColumn Binding="{Binding Group_code}"  Width="200" Header="Группа"/>
+                    <DataGridTextColumn Binding="{Binding Enrolled}"  Width="200" Header="Зарегистрирован"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
