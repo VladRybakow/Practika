@@ -41,5 +41,10 @@ namespace Practika.Pages
                 MessageBox.Show("Ваша заявка отправлена на рассмотрение");
             }
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Authoriztion());
+        }
     }
 }

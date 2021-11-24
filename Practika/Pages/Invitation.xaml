@@ -145,7 +145,7 @@
                         создать комфортный климат в команде."
                     </ToolTip>
                 </TextBlock.ToolTip>
-                </TextBlock>
+            </TextBlock>
             <TextBlock Text="Операционное управление">
                 <TextBlock.ToolTip>
                     <ToolTip>
@@ -154,7 +154,7 @@
                         и правильно делегировать задачи, чтобы разгрузить себя и заняться стратегическими вопросами."
                     </ToolTip>
                 </TextBlock.ToolTip>
-                </TextBlock>
+            </TextBlock>
             <TextBlock Text="Управление проектами">
                 <TextBlock.ToolTip>
                     <ToolTip>
@@ -216,6 +216,21 @@
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="16" />
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button  
+            Content="Назад" Grid.Row="2"
+            HorizontalAlignment="Left" 
+            Margin="10,6,0,0" VerticalAlignment="Top"
+            Height="40" Width="70"
+            Click="Back_Click"
+            Padding="1" FontFamily="Segoe Script" FontSize="12" 
+            BorderBrush="Black" Background="White" RenderTransformOrigin="-4.222,0.5" Grid.Column="2">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="12" />
                 </Style>
             </Button.Resources>
         </Button>
