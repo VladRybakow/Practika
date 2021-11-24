@@ -17,7 +17,6 @@ namespace Practika.BD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Groups()
         {
-            this.Applicationsss = new HashSet<Applicationsss>();
             this.Participant = new HashSet<Participant>();
             this.Schedule = new HashSet<Schedule>();
         }
@@ -29,8 +28,6 @@ namespace Practika.BD
         public Nullable<int> Load_code { get; set; }
         public Nullable<int> Specialty_Code { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Applicationsss> Applicationsss { get; set; }
         public virtual Audience Audience { get; set; }
         public virtual Load Load { get; set; }
         public virtual Speciality Speciality { get; set; }

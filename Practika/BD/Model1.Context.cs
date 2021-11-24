@@ -13,10 +13,10 @@ namespace Practika.BD
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Educational_practice_RybakovEntities4 : DbContext
+    public partial class Educational_practice_RybakovEntities : DbContext
     {
-        public Educational_practice_RybakovEntities4()
-            : base("name=Educational_practice_RybakovEntities4")
+        public Educational_practice_RybakovEntities()
+            : base("name=Educational_practice_RybakovEntities")
         {
         }
     
@@ -38,6 +38,7 @@ namespace Practika.BD
         public virtual DbSet<Schedule> Schedule { get; set; }
         public virtual DbSet<Selection_committee> Selection_committee { get; set; }
         public virtual DbSet<Speciality> Speciality { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Teachers> Teachers { get; set; }
     }
 }

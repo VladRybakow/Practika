@@ -12,17 +12,12 @@ namespace Practika.BD
     using System;
     using System.Collections.Generic;
     
-    public partial class Applicationsss
+    public partial class sysdiagrams
     {
-        public int Application_code { get; set; }
-        public string Description { get; set; }
-        public string Teacher_FullName { get; set; }
-        public string Speciality { get; set; }
-        public Nullable<int> Group_code { get; set; }
-        public Nullable<int> Student_code { get; set; }
-        public Nullable<bool> Enrolled { get; set; }
-        public Nullable<int> IdAuth { get; set; }
-    
-        public virtual Authorization Authorization { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

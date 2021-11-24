@@ -22,11 +22,16 @@ namespace Practika.Pages
     /// </summary>
     public partial class Examination : Page
     {
-        Educational_practice_RybakovEntities4 dbPractik = new Educational_practice_RybakovEntities4();
+        Educational_practice_RybakovEntities dbPractik = new Educational_practice_RybakovEntities();
 
         public Examination()
         {
             InitializeComponent();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Authoriztion());
         }
 
         private void Check_Click(object sender, RoutedEventArgs e)
@@ -39,12 +44,23 @@ namespace Practika.Pages
                     if (user.Pass == Password.Text.Trim() && user.IdAuth != 1)
                     {
                         MessageBox.Show($"Здравствуйте, пользователь: {user.Login}");
+
                         var query = (from ap in dbPractik.Applicationsss
                                      join us in dbPractik.Authorization
                                      on ap.IdAuth equals us.IdAuth
                                      where ap.IdAuth == user.IdAuth
                                      select ap.Teacher_FullName).First();
+
                         Teacher.Text = query;
+
+                        var query3 = (from ap in dbPractik.Applicationsss
+                                     join us in dbPractik.Authorization
+                                     on ap.IdAuth equals us.IdAuth
+                                     where ap.IdAuth == user.IdAuth
+                                     select ap.Speciality).First();
+
+                        Spec.Text = query3;
+
                         var query2 = (from ap in dbPractik.Applicationsss
                                      join us in dbPractik.Authorization
                                      on ap.IdAuth equals us.IdAuth

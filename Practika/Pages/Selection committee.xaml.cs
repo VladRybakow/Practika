@@ -20,7 +20,7 @@ namespace Practika.Pages
 
     public partial class Selection_committee : Page
     {
-        Educational_practice_RybakovEntities4 qwe = new Educational_practice_RybakovEntities4();
+        Educational_practice_RybakovEntities qwe = new Educational_practice_RybakovEntities();
 
         public Selection_committee()
         {
@@ -102,7 +102,6 @@ namespace Practika.Pages
                 {
                     qwe.Applicationsss.Remove(asd);
                     qwe.SaveChanges();
-                    Appli.ItemsSource = qwe.Applicationsss.ToList();
                 }
 
                 catch
@@ -110,6 +109,11 @@ namespace Practika.Pages
                     MessageBox.Show("Удалите соединения связанные с этим данным");
                 }
             }
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Authoriztion());
         }
     }
 }
