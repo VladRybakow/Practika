@@ -23,7 +23,6 @@ namespace Practika.Pages
     public partial class Examination : Page
     {
         public static Educational_practice_RybakovEntities3 dbPractik = new Educational_practice_RybakovEntities3();
-        public static Authorization authUser;
 
         public Examination()
         {
@@ -33,6 +32,7 @@ namespace Practika.Pages
         private void Check_Click(object sender, RoutedEventArgs e)
         {
             Applicationsss rer = new Applicationsss();
+            Authorization rur = new Authorization();
 
             foreach (var user in Authoriztion.dbPractik.Authorization)
             {
@@ -42,6 +42,7 @@ namespace Practika.Pages
                     {
                         MessageBox.Show($"Здравствуйте, пользователь: {user.Login}");
                         Teacher.Text = rer.Teacher_FullName;
+                        Check.Text = rer.Enrolled;
                     }
                     if (user.Pass == Password.Text.Trim() && user.IdAuth == 1)
                     {

@@ -85,5 +85,10 @@ namespace Practika.Pages
         {
             NavigationService.Navigate(new Examination());
         }
+
+        private void Schedule_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Schedule());
+        }
     }
 }
