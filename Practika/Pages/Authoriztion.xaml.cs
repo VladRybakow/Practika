@@ -21,8 +21,9 @@ namespace Practika.Pages
 {
     public partial class Authoriztion : Page
     {
-        public static Educational_practice_RybakovEntities3 dbPractik = new Educational_practice_RybakovEntities3();
+        public static Educational_practice_RybakovEntities4 dbPractik = new Educational_practice_RybakovEntities4();
         public static Authorization authUser;
+        public static int aut { get; set; }
 
         public Authoriztion()
         {
@@ -77,6 +78,7 @@ namespace Practika.Pages
                         Authoriztion.authUser = user;
                         NavigationService.Navigate(new Selection_committee());
                     }
+                    aut = user.IdAuth; 
                 }
             }
         }

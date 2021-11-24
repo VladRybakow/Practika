@@ -33,6 +33,7 @@ namespace Practika.Pages
                 application.Description = Applic.Text;
                 application.Speciality = Spec.Text;
                 application.Teacher_FullName = Prep.Text;
+                application.IdAuth = Authoriztion.aut;
 
                 MainWindow.dbPractik.Applicationsss.Add(application);
 

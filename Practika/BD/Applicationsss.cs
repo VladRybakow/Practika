@@ -18,11 +18,13 @@ namespace Practika.BD
         public string Description { get; set; }
         public string Teacher_FullName { get; set; }
         public string Speciality { get; set; }
-        public Nullable<int> Student_code { get; set; }
         public Nullable<int> Group_code { get; set; }
-        public string Enrolled { get; set; }
+        public Nullable<int> Student_code { get; set; }
+        public Nullable<bool> Enrolled { get; set; }
+        public Nullable<int> IdAuth { get; set; }
     
         public virtual Participant Participant { get; set; }
         public virtual Groups Groups { get; set; }
+        public virtual Authorization Authorization { get; set; }
     }
 }

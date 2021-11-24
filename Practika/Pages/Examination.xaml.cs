@@ -22,7 +22,7 @@ namespace Practika.Pages
     /// </summary>
     public partial class Examination : Page
     {
-        public static Educational_practice_RybakovEntities3 dbPractik = new Educational_practice_RybakovEntities3();
+        Educational_practice_RybakovEntities4 dbPractik = new Educational_practice_RybakovEntities4();
 
         public Examination()
         {
@@ -31,8 +31,6 @@ namespace Practika.Pages
 
         private void Check_Click(object sender, RoutedEventArgs e)
         {
-            Applicationsss rer = new Applicationsss();
-            Authorization rur = new Authorization();
 
             foreach (var user in Authoriztion.dbPractik.Authorization)
             {
@@ -41,8 +39,25 @@ namespace Practika.Pages
                     if (user.Pass == Password.Text.Trim() && user.IdAuth != 1)
                     {
                         MessageBox.Show($"Здравствуйте, пользователь: {user.Login}");
-                        Teacher.Text = rer.Teacher_FullName;
-                        Check.Text = rer.Enrolled;
+                        var query = (from ap in dbPractik.Applicationsss
+                                     join us in dbPractik.Authorization
+                                     on ap.IdAuth equals us.IdAuth
+                                     where ap.IdAuth == user.IdAuth
+                                     select ap.Teacher_FullName).First();
+                        Teacher.Text = query;
+                        var query2 = (from ap in dbPractik.Applicationsss
+                                     join us in dbPractik.Authorization
+                                     on ap.IdAuth equals us.IdAuth
+                                     where ap.IdAuth == user.IdAuth
+                                     select ap.Enrolled).First();
+                        if (query2 == true)
+                        {
+                            Check.Text = "Одобрена";
+                        }
+                        else if (query2 == false)
+                        {
+                            Check.Text = "Отклонена";
+                        }
                     }
                     if (user.Pass == Password.Text.Trim() && user.IdAuth == 1)
                     {

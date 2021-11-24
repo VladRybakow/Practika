@@ -173,10 +173,9 @@
             FontFamily="Segoe Script" FontSize="22" RenderTransformOrigin="2.64,0.444"/>
 
         <Button  
-            Content="Проверка на поступление"
-            Grid.Column="3" Grid.Row="6"
+            Content="Проверка на поступление" Grid.Row="4"
             HorizontalAlignment="Left" 
-            Margin="81,42,0,0" VerticalAlignment="Top"
+            Margin="10,44,0,0" VerticalAlignment="Top"
             Height="50" Width="225" 
             Click="SignIn_Click1"
             Padding="1" FontFamily="Segoe Script" FontSize="14" 
@@ -189,9 +188,9 @@
         </Button>
 
         <Button  
-            Content="Расписание" Grid.Row="6"
+            Content="Расписание" Grid.Row="5"
             HorizontalAlignment="Left" 
-            Margin="65,22,0,0" VerticalAlignment="Top"
+            Margin="65,38,0,0" VerticalAlignment="Top"
             Height="70" Width="110" 
             Click="Schedule_Click"
             Padding="1" FontFamily="Segoe Script" FontSize="14" 

@@ -12,21 +12,26 @@
       Title="Selection_committee">
 
     <Grid Background="White">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="70" />
+            <RowDefinition Height="270" />
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button x:Name="Add" 
                     FontFamily="Arial" FontSize="14" 
-                    Width="100" Height="40" Content="Save" 
-                    Margin="600 0 0 0" Click="ButtonAdd"/>
+                    Width="100" Height="40" Content="Одобрить" 
+                    Margin="600,-100,0,115" Click="ButtonAdd"/>
+            <Button x:Name="Del" 
+                    FontFamily="Arial" FontSize="14" 
+                    Width="100" Height="40" Content="Отклонение"
+                    Margin="0 0 0 100"
+                     Click="Close1"/>
             <Button x:Name="Delete" 
                     FontFamily="Arial" FontSize="14" 
                     Width="100" Height="40" Content="Delete" 
-                    Margin="10 0" Click="ButtonDel"/>
+                    Margin="10 -210 0 0" Click="ButtonDel"/>
         </StackPanel>
 
         <StackPanel>

@@ -17,20 +17,19 @@ using Practika.BD;
 
 namespace Practika.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Selection_committee.xaml
-    /// </summary>
+
     public partial class Selection_committee : Page
     {
-        Educational_practice_RybakovEntities3 qwe = new Educational_practice_RybakovEntities3();
+        Educational_practice_RybakovEntities4 qwe = new Educational_practice_RybakovEntities4();
 
         public Selection_committee()
         {
             InitializeComponent();
 
-            qwe = new Educational_practice_RybakovEntities3();
-
-            Appli.ItemsSource = qwe.Applicationsss.ToList();
+            var query = (from ap in qwe.Applicationsss
+                         where ap.Enrolled == null
+                         select ap);
+            Appli.ItemsSource = query.ToList();
         }
 
         private void ButtonAdd(object sender, RoutedEventArgs e)
@@ -43,15 +42,40 @@ namespace Practika.Pages
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show("Вы действительно хотите сохранить?", "Сохранить?", MessageBoxButton.YesNoCancel);
+            MessageBoxResult result = MessageBox.Show("Вы действительно хотите одобрить эту заявку?", "Одобрить?", MessageBoxButton.YesNoCancel);
 
             if (result == MessageBoxResult.Yes)
             {
                 try
                 {
-                    qwe.Applicationsss.Add(asd);
+                    asd.Enrolled = true;
+                    qwe.SaveChanges();                
+                }
+                catch
+                {
+                    MessageBox.Show("Удалите соединения связанные с этим данным");
+                }
+            }
+        }
+
+        private void Close1(object sender, RoutedEventArgs e)
+        {
+            var asd = Appli.SelectedItem as Applicationsss;
+
+            if (asd == null)
+            {
+                MessageBox.Show("Эта строка пуста.");
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Вы действительно хотите отклонить эту заявку?", "отклонить?", MessageBoxButton.YesNoCancel);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    asd.Enrolled = false;
                     qwe.SaveChanges();
-                    Appli.ItemsSource = qwe.Applicationsss.ToList();
                 }
                 catch
                 {

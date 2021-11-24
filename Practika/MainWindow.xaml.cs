@@ -22,7 +22,7 @@ namespace Practika
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Educational_practice_RybakovEntities3 dbPractik = new Educational_practice_RybakovEntities3();
+        public static Educational_practice_RybakovEntities4 dbPractik = new Educational_practice_RybakovEntities4();
         public static Authorization authUser;
 
         public MainWindow()
