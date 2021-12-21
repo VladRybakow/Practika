@@ -13,10 +13,10 @@ namespace Practika.BD
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Educational_practice_RybakovEntities : DbContext
+    public partial class Educational_practice_RybakovEntities2 : DbContext
     {
-        public Educational_practice_RybakovEntities()
-            : base("name=Educational_practice_RybakovEntities")
+        public Educational_practice_RybakovEntities2()
+            : base("name=Educational_practice_RybakovEntities2")
         {
         }
     

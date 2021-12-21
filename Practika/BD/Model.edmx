@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Educational_practice_RybakovModel1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Educational_practice_RybakovModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicationsss">
           <Key>
             <PropertyRef Name="Application_code" />
@@ -145,18 +145,6 @@
           <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
           <Property Name="Experience" Type="float" />
         </EntityType>
-        <Association Name="FK_Application_Participant">
-          <End Role="Participant" Type="Self.Participant" Multiplicity="0..1" />
-          <End Role="Applicationsss" Type="Self.Applicationsss" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Participant">
-              <PropertyRef Name="Student_code" />
-            </Principal>
-            <Dependent Role="Applicationsss">
-              <PropertyRef Name="Student_code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Applicationsss_Authorization">
           <End Role="Authorization" Type="Self.Authorization" Multiplicity="0..1" />
           <End Role="Applicationsss" Type="Self.Applicationsss" Multiplicity="*" />
@@ -166,18 +154,6 @@
             </Principal>
             <Dependent Role="Applicationsss">
               <PropertyRef Name="IdAuth" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Applicationsss_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
-          <End Role="Applicationsss" Type="Self.Applicationsss" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Groups">
-              <PropertyRef Name="Group_code" />
-            </Principal>
-            <Dependent Role="Applicationsss">
-              <PropertyRef Name="Group_code" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -361,7 +337,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище Educational_practice_RybakovModel1Container">
+        <EntityContainer Name="Хранилище Educational_practice_RybakovModelContainer">
           <EntitySet Name="Applicationsss" EntityType="Self.Applicationsss" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Authorization" EntityType="Self.Authorization" Schema="dbo" store:Type="Tables" />
@@ -377,16 +353,8 @@
           <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Application_Participant" Association="Self.FK_Application_Participant">
-            <End Role="Participant" EntitySet="Participant" />
-            <End Role="Applicationsss" EntitySet="Applicationsss" />
-          </AssociationSet>
           <AssociationSet Name="FK_Applicationsss_Authorization" Association="Self.FK_Applicationsss_Authorization">
             <End Role="Authorization" EntitySet="Authorization" />
-            <End Role="Applicationsss" EntitySet="Applicationsss" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Applicationsss_Groups" Association="Self.FK_Applicationsss_Groups">
-            <End Role="Groups" EntitySet="Groups" />
             <End Role="Applicationsss" EntitySet="Applicationsss" />
           </AssociationSet>
           <AssociationSet Name="FK_Audience_Educational institution" Association="Self.FK_Audience_Educational institution">
@@ -454,7 +422,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Educational_practice_RybakovModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Educational_practice_RybakovModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Applicationsss">
           <Key>
             <PropertyRef Name="Application_code" />
@@ -467,9 +435,7 @@
           <Property Name="Student_code" Type="Int32" />
           <Property Name="Enrolled" Type="Boolean" />
           <Property Name="IdAuth" Type="Int32" />
-          <NavigationProperty Name="Participant" Relationship="Self.FK_Application_Participant" FromRole="Applicationsss" ToRole="Participant" />
           <NavigationProperty Name="Authorization" Relationship="Self.FK_Applicationsss_Authorization" FromRole="Applicationsss" ToRole="Authorization" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_Applicationsss_Groups" FromRole="Applicationsss" ToRole="Groups" />
         </EntityType>
         <EntityType Name="Audience">
           <Key>
@@ -524,7 +490,6 @@
           <Property Name="Audience_code" Type="Int32" />
           <Property Name="Load_code" Type="Int32" />
           <Property Name="Specialty_Code" Type="Int32" />
-          <NavigationProperty Name="Applicationsss" Relationship="Self.FK_Applicationsss_Groups" FromRole="Groups" ToRole="Applicationsss" />
           <NavigationProperty Name="Audience" Relationship="Self.FK_Groups_Audience" FromRole="Groups" ToRole="Audience" />
           <NavigationProperty Name="Load" Relationship="Self.FK_Groups_Load" FromRole="Groups" ToRole="Load" />
           <NavigationProperty Name="Speciality" Relationship="Self.FK_Groups_Speciality" FromRole="Groups" ToRole="Speciality" />
@@ -563,7 +528,6 @@
           <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="Year_of_birth" Type="DateTime" Precision="0" />
           <Property Name="Group_code" Type="Int32" />
-          <NavigationProperty Name="Applicationsss" Relationship="Self.FK_Application_Participant" FromRole="Participant" ToRole="Applicationsss" />
           <NavigationProperty Name="Authorization" Relationship="Self.FK_Authorization_Participant" FromRole="Participant" ToRole="Authorization" />
           <NavigationProperty Name="Groups" Relationship="Self.FK_Participant_Groups" FromRole="Participant" ToRole="Groups" />
         </EntityType>
@@ -631,18 +595,6 @@
           <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_Teachers" FromRole="Teachers" ToRole="Groups" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Teachers" FromRole="Teachers" ToRole="Schedule" />
         </EntityType>
-        <Association Name="FK_Application_Participant">
-          <End Role="Participant" Type="Self.Participant" Multiplicity="0..1" />
-          <End Role="Applicationsss" Type="Self.Applicationsss" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Participant">
-              <PropertyRef Name="Student_code" />
-            </Principal>
-            <Dependent Role="Applicationsss">
-              <PropertyRef Name="Student_code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Applicationsss_Authorization">
           <End Role="Authorization" Type="Self.Authorization" Multiplicity="0..1" />
           <End Role="Applicationsss" Type="Self.Applicationsss" Multiplicity="*" />
@@ -652,18 +604,6 @@
             </Principal>
             <Dependent Role="Applicationsss">
               <PropertyRef Name="IdAuth" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Applicationsss_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
-          <End Role="Applicationsss" Type="Self.Applicationsss" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Groups">
-              <PropertyRef Name="Group_code" />
-            </Principal>
-            <Dependent Role="Applicationsss">
-              <PropertyRef Name="Group_code" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -847,7 +787,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Educational_practice_RybakovEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Educational_practice_RybakovEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applicationsss" EntityType="Self.Applicationsss" />
           <EntitySet Name="Audience" EntityType="Self.Audience" />
           <EntitySet Name="Authorization" EntityType="Self.Authorization" />
@@ -863,16 +803,8 @@
           <EntitySet Name="Speciality" EntityType="Self.Speciality" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" />
-          <AssociationSet Name="FK_Application_Participant" Association="Self.FK_Application_Participant">
-            <End Role="Participant" EntitySet="Participant" />
-            <End Role="Applicationsss" EntitySet="Applicationsss" />
-          </AssociationSet>
           <AssociationSet Name="FK_Applicationsss_Authorization" Association="Self.FK_Applicationsss_Authorization">
             <End Role="Authorization" EntitySet="Authorization" />
-            <End Role="Applicationsss" EntitySet="Applicationsss" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Applicationsss_Groups" Association="Self.FK_Applicationsss_Groups">
-            <End Role="Groups" EntitySet="Groups" />
             <End Role="Applicationsss" EntitySet="Applicationsss" />
           </AssociationSet>
           <AssociationSet Name="FK_Audience_Educational_institution" Association="Self.FK_Audience_Educational_institution">
@@ -941,9 +873,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище Educational_practice_RybakovModel1Container" CdmEntityContainer="Educational_practice_RybakovEntities2">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Educational_practice_RybakovModelContainer" CdmEntityContainer="Educational_practice_RybakovEntities">
           <EntitySetMapping Name="Applicationsss">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Applicationsss">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Applicationsss">
               <MappingFragment StoreEntitySet="Applicationsss">
                 <ScalarProperty Name="Application_code" ColumnName="Application_code" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -957,7 +889,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Audience">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Audience">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Audience">
               <MappingFragment StoreEntitySet="Audience">
                 <ScalarProperty Name="Audience_code" ColumnName="Audience_code" />
                 <ScalarProperty Name="School_code" ColumnName="School_code" />
@@ -965,7 +897,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Authorization">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Authorization">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Authorization">
               <MappingFragment StoreEntitySet="Authorization">
                 <ScalarProperty Name="IdAuth" ColumnName="IdAuth" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
@@ -977,7 +909,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Branch">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Branch">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Branch">
               <MappingFragment StoreEntitySet="Branch">
                 <ScalarProperty Name="Branch_code" ColumnName="Branch_code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -985,7 +917,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Educational_institution">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Educational_institution">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Educational_institution">
               <MappingFragment StoreEntitySet="Educational institution">
                 <ScalarProperty Name="School_code" ColumnName="School_code" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -994,7 +926,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Groups">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Groups">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Groups">
               <MappingFragment StoreEntitySet="Groups">
                 <ScalarProperty Name="Group_code" ColumnName="Group_code" />
                 <ScalarProperty Name="Number_of_students" ColumnName="Number_of_students" />
@@ -1006,7 +938,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Load">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Load">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Load">
               <MappingFragment StoreEntitySet="Load">
                 <ScalarProperty Name="Load_code" ColumnName="Load_code" />
                 <ScalarProperty Name="Item" ColumnName="Item" />
@@ -1016,7 +948,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Occupation_type">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Occupation_type">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Occupation_type">
               <MappingFragment StoreEntitySet="Occupation type">
                 <ScalarProperty Name="Study_type_code" ColumnName="Study_type_code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1025,7 +957,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Participant">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Participant">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Participant">
               <MappingFragment StoreEntitySet="Participant">
                 <ScalarProperty Name="Student_code" ColumnName="Student_code" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -1038,7 +970,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Role">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1046,7 +978,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Schedule">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Schedule">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Schedule">
               <MappingFragment StoreEntitySet="Schedule">
                 <ScalarProperty Name="Schedule_code" ColumnName="Schedule_code" />
                 <ScalarProperty Name="Lesson_time" ColumnName="Lesson_time" />
@@ -1057,7 +989,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Selection_committee">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Selection_committee">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Selection_committee">
               <MappingFragment StoreEntitySet="Selection committee">
                 <ScalarProperty Name="Item_number" ColumnName="Item_number" />
                 <ScalarProperty Name="Full_name" ColumnName="Full_name" />
@@ -1066,7 +998,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Speciality">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Speciality">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Speciality">
               <MappingFragment StoreEntitySet="Speciality">
                 <ScalarProperty Name="Specialty_Code" ColumnName="Specialty_Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1075,7 +1007,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.sysdiagrams">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1086,7 +1018,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Teachers">
-            <EntityTypeMapping TypeName="Educational_practice_RybakovModel1.Teachers">
+            <EntityTypeMapping TypeName="Educational_practice_RybakovModel.Teachers">
               <MappingFragment StoreEntitySet="Teachers">
                 <ScalarProperty Name="Teacher_code" ColumnName="Teacher_code" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />

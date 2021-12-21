@@ -15,13 +15,11 @@ using System.Windows.Shapes;
 using Practika.Pages;
 using Practika.BD;
 
-//Вход с учетки админа логин и пароль 123, пользователи все остальные.
-
 namespace Practika.Pages
 {
     public partial class Authoriztion : Page
     {
-        public static Educational_practice_RybakovEntities dbPractik = new Educational_practice_RybakovEntities();
+        public static Educational_practice_RybakovEntities1 dbPractik = new Educational_practice_RybakovEntities1();
         public static Authorization authUser;
         public static int aut { get; set; }
 

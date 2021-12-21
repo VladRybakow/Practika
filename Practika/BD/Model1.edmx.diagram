@@ -4,38 +4,40 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6a39735a342d4180aef7dd286660ff16" Name="Diagram1">
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Applicationsss" Width="1.5" PointX="12" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Audience" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Authorization" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Branch" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Educational_institution" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Groups" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Load" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Occupation_type" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Participant" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Role" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Schedule" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Selection_committee" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Speciality" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Educational_practice_RybakovModel.Teachers" Width="1.5" PointX="3" PointY="15.625" IsExpanded="true" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Applicationsss_Authorization" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Audience_Educational_institution" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Groups_Audience" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Schedule_Audience" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Authorization_Participant" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Authorization_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Authorization_Selection_committee" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Speciality_Branch" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Selection_committee_Educational_institution" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Groups_Load" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Groups_Speciality" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Groups_Teachers" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Participant_Groups" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Schedule_Groups" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Occupation_type_Load" ManuallyRouted="false" />
-        <AssociationConnector Association="Educational_practice_RybakovModel.FK_Schedule_Teachers" ManuallyRouted="false" />
+      <Diagram DiagramId="c318e0afa945484d90cf89b723da2115" Name="Diagram1">
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Applicationsss" Width="1.5" PointX="9.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Audience" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Authorization" Width="1.5" PointX="9.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Branch" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Educational_institution" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Groups" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Load" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Occupation_type" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Participant" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Role" Width="1.5" PointX="7.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Schedule" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Selection_committee" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Speciality" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Educational_practice_RybakovModel1.Teachers" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Application_Participant" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Applicationsss_Authorization" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Applicationsss_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Audience_Educational_institution" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Groups_Audience" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Schedule_Audience" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Authorization_Participant" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Authorization_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Authorization_Selection_committee" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Speciality_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Selection_committee_Educational_institution" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Groups_Load" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Groups_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Groups_Teachers" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Participant_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Schedule_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Occupation_type_Load" ManuallyRouted="false" />
+        <AssociationConnector Association="Educational_practice_RybakovModel1.FK_Schedule_Teachers" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

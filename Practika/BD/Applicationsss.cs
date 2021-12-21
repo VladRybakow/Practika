@@ -23,6 +23,8 @@ namespace Practika.BD
         public Nullable<bool> Enrolled { get; set; }
         public Nullable<int> IdAuth { get; set; }
     
+        public virtual Participant Participant { get; set; }
         public virtual Authorization Authorization { get; set; }
+        public virtual Groups Groups { get; set; }
     }
 }
